@@ -23,13 +23,36 @@ namespace Exec_MathTool
             calcButton.Text = "計算";
 
             resultTextBox.Font = new Font("標楷體", 12, FontStyle.Bold);
-            //numbercboBox.SelectedIndex = 0;
+            
+            numbercboBox.SelectedIndex = 0;
 
         }
 
         private void calcButton_Click(object sender, EventArgs e)
         {
-            // 
+            // 取得被選取的數值
+            int firstNumber = GetNumber();
+
+            // 生成班一乘法表
+            string table = RenderSingleTable(firstNumber);
+
+            // 呈現結果
+            resultTextBox.Text = table;
         }
+
+        private string RenderSingleTable(int firstNumber)
+        {
+            string table = string.Empty;
+            for (int i = 1; i < 9; i++)
+            {
+                table += $"{firstNumber} * {i} = {firstNumber * i}\r\n";
+            }
+            return table;
+        }
+
+        private int GetNumber()
+        => Convert.ToInt32(numbercboBox.SelectedItem);
+            
+        
     }
 }
